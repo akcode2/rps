@@ -5,83 +5,105 @@ function getComputerChoice() {
     return randomInt;
 };
 
+let computerScore = 0;
+let playerScore = 0;
+
 function game() {
 
-    let playerScore = 0;
-    let computerScore = 0;
+    playerScore = 0;
+    console.log("Reset playerScore to " + playerScore);
+    computerScore = 0;
+    console.log("Reset computerScore to " + computerScore);
     const max_rounds = 5;
     round_ctr = 0;
 
+    const scorePanel = document.querySelector('.scoreTracker');
+    const resultPanel = document.querySelector('.messageWindow');
     const playerSpan = document.getElementById('playerScore');
     const compSpan = document.getElementById('computerScore');
-    const resultSpan = document.getElementById('roundResult');
-    const winnerSpan = document.getElementById('winner');
+    const currentRoundSpan = document.getElementById('currentRound');
+    const maxRoundSpan = document.getElementById('maxRounds');
     
-    newGameBtn.remove();
-    playerSpan.innerText = "0";
-    compSpan.innerText = "0";
-    resultSpan.innerText = "";
-    winnerSpan.innerText = "";
+    // Hide the new game button once the game starts
+    newGameBtn.style.display = "none";
 
-    const choices = ["Rock", "Paper", "Scissors"];
+    document.querySelectorAll('.interface > div').forEach(div => {
+        div.style.display = "flex";
+    });
 
-    choices.forEach(choice => {
-        const choiceBtn = document.createElement('button');
-        choiceBtn.appendChild(document.createTextNode(`${choice}`));
-        choiceBtn.setAttribute("value", choices.indexOf(choice));
-        choiceBtn.addEventListener('click', () => {
-            if (round_ctr < max_rounds) {
-                playRound(choiceBtn.getAttribute('value'));
-            }
-        });
-        document.body.appendChild(choiceBtn);
-    })
+    currentRoundSpan.innerText = round_ctr + 1;
+    maxRoundSpan.innerText = max_rounds;
+    playerSpan.innerText = playerScore;
+    compSpan.innerText = computerScore;
+    resultPanel.innerText = "Let's play Rock, Paper, Scissors!";
 
-    function playRound(playerSelection) {       
+    const playerChoiceBtns = document.querySelectorAll('.playerOptions > button');
+
+
+    // Add event listeners to buttons only if they don't already exist
+    // using a "listener" attribute to do the check
+    playerChoiceBtns.forEach(choice => {
+        if (choice.getAttribute('listener') !== 'true') {
+            choice.addEventListener('click', () => {
+                if (round_ctr < max_rounds) {
+                    playRound(choice.getAttribute('value'));
+                }
+            })
+            choice.setAttribute('listener', 'true');
+        };
+    });
+    
+
+    function playRound(playerSelection) {     
         computerSelection = getComputerChoice();
-    
+            
         if (playerSelection == computerSelection) {
-            resultSpan.innerText = "Round was a tie!";
+            resultPanel.innerText = "We both tied that round!";
         }
-        // This emulates the relationship: 2 > 0 > 1 > 2
+        // This emulates the relationship: 2 > 0 > 1 > 2 i.e. Scissors > Rock > Paper > Scissors
         // Player wins if their selection is 1 greater than computer selection under modulo
         else if ((computerSelection + 1) % 3 == playerSelection) {
-            resultSpan.innerText = "Player won the round!";
+            resultPanel.innerText = "You won that round!";
             playerScore += 1;
             playerSpan.innerText = playerScore;
         }
         else {
-            resultSpan.innerText = "Computer won the round!"
+            resultPanel.innerText = "I won that round!"
             computerScore += 1;
             compSpan.innerText = computerScore;
         }
         
         round_ctr++;
+        currentRoundSpan.innerText = round_ctr + 1;
         if (round_ctr >= max_rounds) {
             determineWinner();
+            currentRoundSpan.innerText = 0;
+
+            // Set display to none on all buttons
             resetGame();
+            // Change the new game button's text and set its display to visible
             newGameBtn.firstChild.nodeValue = "Play again";
-            document.body.appendChild(newGameBtn);
+            newGameBtn.style.display = "";
         }
     };
 
     function determineWinner() {
         if (playerScore > computerScore) {
-            winnerSpan.innerText = "Player wins!";
+            resultPanel.innerText = "You win!";
 
         }
         else if (playerScore == computerScore) {
-            winnerSpan.innerText = "It was a tie!";
+            resultPanel.innerText = "It was a tie!";
         }
         else {
-            winnerSpan.innerText = "Computer wins!";
+            resultPanel.innerText = "I win!";
         }
     }
 
     function resetGame() {
-        document.querySelectorAll('button').forEach(button => {
-            button.remove();
-        })
+        document.querySelectorAll('.interface > div').forEach(div => {
+            div.style.display = "none";
+        });
     }
     return 0;
 };
@@ -90,24 +112,9 @@ function game() {
 
 const newGameBtn = document.createElement('button');
 newGameBtn.appendChild(document.createTextNode("Play"));
+newGameBtn.setAttribute('class', 'button-20');
+newGameBtn.setAttribute('role', 'button');
 newGameBtn.addEventListener('click', () => {
-    // document.getElementById('winner').innerText = "";
     game();
 });
-document.body.insertBefore(newGameBtn,document.getElementById('winner'));
-// document.body.appendChild(newGameBtn);
-
-    // rock.addEventListener('click', function() {
-    //     let result = playRound(0);
-    //     if (result == "tie") {
-    //         console.log(`It was a tie! Both players chose ${choices[playerSelection]}.`);
-    //     }
-    //     else if (result == "player") {
-    //         playerScore += 1;
-    //         console.log(`You win! ${choices[playerSelection]} beats ${choices[computerSelection]}`);
-    //     }
-    //     else if (result == "computer") {
-    //         computerScore += 1;
-    //         console.log(`You lose! ${choices[computerSelection]} beats ${choices[playerSelection]}.`);
-    //     }
-    // })
+document.querySelector('.interface').appendChild(newGameBtn);

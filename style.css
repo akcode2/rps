@@ -1,0 +1,261 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+:root {
+    --primary: #18122B;
+    --secondary: #29213F;
+    --tertiary: #393053;
+    --quarternary: #443C68;
+    --quinary: #635985;
+    --senary: #716890;
+}
+
+body {
+    background-color: var(--primary);
+    margin: 0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    justify-content: center;   
+}
+
+.progress-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 50px;
+}
+
+.roundTracker {
+    display: flex;
+    flex-direction: column;
+    width: 225px;
+    padding: 15px 15px;
+    background-color: var(--secondary);
+    border-radius: 25px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* The word 'Round' */
+.round {
+    font-size: 3em;
+    color: var(--quarternary);
+    text-align: center;
+}
+
+.roundStatus {
+    font-size: 5em;
+    color: var(--senary);
+    line-height: .85em;
+}
+
+.scoreTracker {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: var(--secondary);
+    color: var(--quarternary);
+    padding: 25px;
+    border-radius: 25px;
+    font-size: 3em;
+}
+
+.Score {
+    display:flex;
+    justify-content: space-between;
+    margin-right: 40px;
+    color: var(--senary);
+    font-size: 1.85em;
+    line-height: .85em;
+    padding: 5px 0px;
+    text-align: center;
+}
+
+#computerScore {
+    color: #76D2C3;
+}
+
+#playerScore {
+    color: #D27685;
+}
+
+span#Me {
+    color: #76D2C3;
+    font-size: 3rem;
+}
+
+span#You {
+    color: #D27685;
+    font-size: 3rem;
+}
+
+.horizontal-line {
+    height: 2px;
+    background-color: var(--quinary);
+}
+
+
+
+.game-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
+
+
+.messageWindow {
+    background-color: #100d1a;
+    color: #85D276;
+    width: 500px;
+    margin-top: 50px;
+    margin-bottom: 45px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 25px;
+}
+
+.interface {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--secondary);
+    border-radius: 25px;
+    padding: 50px;
+    width: 600px;
+    height: 400px;
+}
+
+.computerOptions, .playerOptions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.computerOptions {
+    margin-bottom: 25px;
+}
+
+
+
+/* CSS button */
+.button-19 {
+  appearance: button;
+  background-color: var(--quinary);
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins',sans-serif;
+  font-size: 7em;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 1em;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 32px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-19:after {
+  background-clip: padding-box;
+  background-color: var(--tertiary);
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 8px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.button-19:main,
+.button-19:focus {
+  user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.button-19:disabled {
+  cursor: auto;
+}
+
+.button-20 {
+    appearance: button;
+    background-color: var(--quinary);
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Poppins',sans-serif;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 1em;
+    margin: auto;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+
+  }
+  
+  .button-20:after {
+    background-clip: padding-box;
+    background-color: var(--tertiary);
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 8px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+  
+  .button-20:main,
+  .button-20:focus {
+    user-select: auto;
+  }
+  
+  .button-20:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+  }
+  
+  .button-20:disabled {
+    cursor: auto;
+  }
